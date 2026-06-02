@@ -9,10 +9,6 @@
 
 #$ FORCE_OPTIONS_REVIEW: TRUE
 
-#$ INCLUDE: presets/2025.12/rates/defaults.txt
-#$ INCLUDE: presets/2025.12/osd/defaults.txt
-#$ INCLUDE: presets/2025.12/rc_link/defaults.txt
-
 feature TELEMETRY
 
 # -- Rates --
