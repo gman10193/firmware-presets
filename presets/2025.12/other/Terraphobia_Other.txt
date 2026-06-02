@@ -1,0 +1,157 @@
+#$ TITLE: Terraphobia Configuration
+#$ FIRMWARE_VERSION: 2025.12
+#$ CATEGORY: OTHER
+#$ STATUS: COMMUNITY
+#$ KEYWORDS: terraphobia
+#$ AUTHOR: Terraphobia
+#$ DESCRIPTION: All presets used by Terraphobia
+#$ DESCRIPTION: Includes OSD, ELRS 500Hz Race, Rates, Motor Config, 
+
+#$ FORCE_OPTIONS_REVIEW: TRUE
+
+#$ INCLUDE: presets/2025.12/rates/defaults.txt
+#$ INCLUDE: presets/2025.12/osd/defaults.txt
+#$ INCLUDE: presets/2025.12/rc_link/defaults.txt
+
+feature TELEMETRY
+
+# -- Rates --
+#$ OPTION BEGIN (CHECKED): Rates
+    rateprofile 0
+    set rates_type = ACTUAL
+    set quickrates_rc_expo = OFF
+    set roll_rc_rate = 14
+    set pitch_rc_rate = 14
+    set yaw_rc_rate = 14
+    set roll_expo = 60
+    set pitch_expo = 60
+    set yaw_expo = 60
+    set roll_srate = 72
+    set pitch_srate = 72
+    set yaw_srate = 72
+    set roll_rate_limit = 1998
+    set pitch_rate_limit = 1998
+    set yaw_rate_limit = 1998
+#$ OPTION END
+
+
+# -- OSD --
+#$ OPTION BEGIN (CHECKED): HDZero OSD
+    feature OSD
+    set pilot_name = TERRAPHOBIA
+    set osd_displayport_device = MSP
+    set vcd_video_system = HD
+    set osd_link_quality_pos = 2433
+    set osd_rssi_dbm_pos = 2401
+    set osd_tim_1_pos = 3559
+    set osd_tim_2_pos = 3591
+    set osd_vtx_channel_pos = 3112
+    set osd_pilot_name_pos = 2100
+    set osd_altitude_pos = 3464
+    set osd_avg_cell_voltage_pos = 2533
+    set osd_stat_bitmask = 13868 
+#$ OPTION END
+
+# -- RC Link --
+#$ OPTION BEGIN (CHECKED): ELRS 500Hz Race
+    feature RX_SERIAL
+    set serialrx_provider = CRSF
+    #$ INCLUDE: presets/2025.12/rc_link/generic/500hz_race.txt
+#$ OPTION END
+#$ OPTION_GROUP BEGIN: (EXCLUSIVE) Select Receiver UART
+    #$ OPTION BEGIN (UNCHECKED): UART 1
+        serial UART1 64 115200 57600 0 115200
+    #$ OPTION END
+    #$ OPTION BEGIN (UNCHECKED): UART 2
+        serial UART2 64 115200 57600 0 115200
+    #$ OPTION END
+    #$ OPTION BEGIN (UNCHECKED): UART 3
+        serial UART3 64 115200 57600 0 115200
+    #$ OPTION END
+    #$ OPTION BEGIN (UNCHECKED): UART 4
+        serial UART4 64 115200 57600 0 115200
+    #$ OPTION END
+    #$ OPTION BEGIN (UNCHECKED): UART 5
+        serial UART5 64 115200 57600 0 115200
+    #$ OPTION END
+    #$ OPTION BEGIN (UNCHECKED): UART 6
+        serial UART6 64 115200 57600 0 115200
+    #$ OPTION END
+    #$ OPTION BEGIN (UNCHECKED): UART 7
+        serial UART7 64 115200 57600 0 115200
+    #$ OPTION END
+    #$ OPTION BEGIN (UNCHECKED): UART 8
+        serial UART8 64 115200 57600 0 115200
+    #$ OPTION END
+#$ OPTION_GROUP END
+
+# -- Motor Config --
+#$ OPTION_GROUP BEGIN: Motor Config
+    #$ OPTION BEGIN (CHECKED): Bidirectional DShot
+        set dshot_bidir = ON
+    #$ OPTION END
+    #$ OPTION BEGIN (CHECKED): Dshot600
+        set motor_pwm_protocol = DSHOT600
+    #$ OPTION END
+    #$ OPTION BEGIN (UNCHECKED): Dshot300
+        set motor_pwm_protocol = Dshot300
+    #$ OPTION END
+    #$ OPTION BEGIN (CHECKED): Arm at any angle
+        set small_angle = 180
+    #$ OPTION END
+    #$ OPTION BEGIN (CHECKED): Props Out
+        set yaw_motors_reversed = ON
+    #$ OPTION END
+    #$ OPTION BEGIN (CHECKED): Motor Beeper
+        beacon RX_SET
+    #$ OPTION END
+#$ OPTION_GROUP END
+
+# -- VTx --
+#$ OPTION_GROUP BEGIN: VTX Config
+    #$ OPTION BEGIN (UNCHECKED): HDZero Ch Table
+        vtxtable bands 6
+        vtxtable channels 8
+        vtxtable band 1 BOSCAM_A A FACTORY    0    0    0    0    0    0    0    0
+        vtxtable band 2 BOSCAM_B B FACTORY    0    0    0    0    0    0    0    0
+        vtxtable band 3 BOSCAM_E E FACTORY    0    0    0    0    0    0    0    0
+        vtxtable band 4 FATSHARK F FACTORY    0 5760    0 5800    0    0    0    0
+        vtxtable band 5 RACEBAND R FACTORY 5658 5695 5732 5769 5806 5843 5880 5917
+        vtxtable band 6 IMD6     I CUSTOM     0    0    0    0    0    0    0    0
+    #$ OPTION END
+    #$ OPTION BEGIN (CHECKED): HDZero Power Levels 25/200/0
+        vtxtable powerlevels 3
+        vtxtable powervalues 14 23 0
+        vtxtable powerlabels 25 200 0
+        set vcd_video_system = HD
+        set osd_displayport_device = MSP
+    #$ OPTION END    
+    #$ OPTION BEGIN (CHECKED): HDZero Power Levels on AUX 4
+        vtx 0 3 0 0 2 900 1300
+        vtx 1 3 0 0 1 1300 1700
+        vtx 2 3 0 0 3 1700 2100
+    #$ OPTION END
+    #$ OPTION BEGIN (UNCHECKED): Analog NTSC
+        set osd_displayport_device = MAX7456
+        set vcd_video_system = NTSC
+    #$ OPTION END    
+#$ OPTION_GROUP END
+
+# -- Modes --
+#$ OPTION_GROUP BEGIN: Modes
+    #$ OPTION BEGIN (CHECKED): Arm on AUX 1
+        aux 0 0 0 1850 2100 0 0  
+    #$ OPTION END
+    #$ OPTION BEGIN (CHECKED): Turtle on AUX 2
+        aux 1 13 1 1850 2100 0 0  
+    #$ OPTION END
+    #$ OPTION BEGIN (CHECKED): Beeper on AUX 3
+        beacon RX_SET
+        aux 2 35 2 1800 2100 0 0
+    #$ OPTION END
+#$ OPTION_GROUP END:
+
+# -- Other --
+#$ OPTION BEGIN (UNCHECKED): HDZero Halo FC Axcl Orientation
+    set align_board_roll = 180
+#$ OPTION END
