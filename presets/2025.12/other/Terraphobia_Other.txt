@@ -13,7 +13,7 @@ feature TELEMETRY
 
 # -- Rates --
 #$ OPTION BEGIN (CHECKED): Rates
-    rateprofile 0
+    rateprofile 1
     set rates_type = ACTUAL
     set quickrates_rc_expo = OFF
     set roll_rc_rate = 14
